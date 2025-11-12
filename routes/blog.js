@@ -16,7 +16,8 @@ router.post(
   fetchAdmin,
   async (req, res) => {
     try {
-      const { title,description, content, category } = req.body;
+      const { title, description, keyword, imageAlt, content, category } =
+        req.body;
       const imagePaths = {};
       ["image", "thumbnail1", "thumbnail2", "thumbnail3"].forEach((key) => {
         if (req.files && req.files[key]) {
@@ -27,6 +28,8 @@ router.post(
       const blog = new Blog({
         title,
         description,
+        keyword,
+        imageAlt,
         content,
         category,
         author: req.admin._id,
@@ -54,13 +57,16 @@ router.put(
   ]),
   async (req, res) => {
     try {
-      const { title,description, content, category } = req.body;
+      const { title, description, keyword, imageAlt, content, category } =
+        req.body;
       const blog = await Blog.findById(req.params.id);
       if (!blog) return res.status(404).send("Blog not found");
 
       const updateData = {
         title,
         description,
+        keyword,
+        imageAlt,
         content,
         category,
         updatedAt: Date.now(),

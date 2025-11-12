@@ -4,6 +4,9 @@ const { Schema } = mongoose;
 const BlogSchema = new Schema({
   title: { type: String, required: true },
   description: String,
+  description: String,
+  keyword: String,
+  imageAlt: String,
   content: { type: String, required: true }, // store HTML content directly
   image: { type: String }, // main banner image
   thumbnail1: { type: String },
