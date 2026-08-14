@@ -16,6 +16,10 @@ const BlogSchema = new Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "admin" },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date },
+  publishDate: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Blog", BlogSchema);
